@@ -24,16 +24,19 @@ class PlacemarkActivity : AppCompatActivity(), AnkoLogger {
       placemark.title = placemarkTitle.text.toString()
       placemark.description = description.text.toString()
       if (placemark.title.isNotEmpty()) {
-        app.placemarks.add(placemark.copy())
+        app.placemarks.create(placemark.copy())
         info("add Button Pressed: ${placemark}")
-        for (i in app.placemarks.indices) {
-          info("Placemark[$i]:${app.placemarks[i]}")
-        }
         setResult(AppCompatActivity.RESULT_OK)
         finish()
       } else {
         toast("Please Enter a title")
       }
+    }
+
+    btnCancel.setOnClickListener() {
+      toast("Cancelled")
+      setResult(RESULT_OK)
+      finish()
     }
   }
 }
